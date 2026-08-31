@@ -1,0 +1,42 @@
+# RollzSMP — Security & Error Documents
+
+Options -Indexes
+
+# Custom error pages
+ErrorDocument 404 /404.php
+ErrorDocument 403 /403.php
+ErrorDocument 500 /500.php
+
+# Protect config and cache
+<Files "config.php">
+    Require all denied
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to includes and cache
+    RewriteRule ^(includes|cache)/ - [F,L]
+
+    # Deny access to hidden files
+    RewriteRule (^|/)\. - [F,L]
+</IfModule>
+
+# Security headers (compatible with most shared hosting)
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# PHP settings (if allowed)
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_value max_execution_time 30
+</IfModule>
+
+ErrorDocument 401 /401.php
+ErrorDocument 402 /402.php
+ErrorDocument 503 /503.php
+ErrorDocument 400 /400.php
