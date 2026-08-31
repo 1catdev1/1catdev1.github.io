@@ -1,0 +1,112 @@
+/* =====================================================
+   RollzSMP — Animations
+   ===================================================== */
+
+/* Hero entrance */
+.hero-animate {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+}
+
+.hero-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-animate.delay-1 { transition-delay: 0.1s; }
+.hero-animate.delay-2 { transition-delay: 0.25s; }
+.hero-animate.delay-3 { transition-delay: 0.4s; }
+.hero-animate.delay-4 { transition-delay: 0.55s; }
+.hero-animate.delay-5 { transition-delay: 0.7s; }
+
+/* Scroll reveal base */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: blur(4px);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.1s; }
+.stagger-3 { transition-delay: 0.15s; }
+.stagger-4 { transition-delay: 0.2s; }
+.stagger-5 { transition-delay: 0.25s; }
+.stagger-6 { transition-delay: 0.3s; }
+
+/* Number counter animation */
+.counter-anim {
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+
+.counter-anim.updating {
+    transform: translateY(-4px);
+    opacity: 0.7;
+}
+
+/* Pulse for online status */
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.status-dot.online {
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .status-dot.online {
+        animation: none;
+    }
+}
